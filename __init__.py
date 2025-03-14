@@ -6,6 +6,8 @@ import torch
 
 
 class PSNR:
+    """Peak Signal-to-Noise Ratio"""
+
     @classmethod
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
@@ -18,10 +20,12 @@ class PSNR:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "convert_to_greyscale": (
                     "BOOLEAN",
                     {
@@ -31,9 +35,11 @@ class PSNR:
             },
         }
 
+    DESCRIPTION = "Measures the peak signal-to-noise ratio between images. Higher values indicate better quality."
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("psnr",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -55,6 +61,8 @@ class PSNR:
 
 
 class SSIM:
+    """Structural Similarity Index Measure"""
+
     @classmethod
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
@@ -79,15 +87,11 @@ class SSIM:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
-                "full": (
-                    "BOOLEAN",
-                    {
-                        "default": False,
-                    },
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
                 ),
                 "downsample": (
                     "BOOLEAN",
@@ -110,9 +114,11 @@ class SSIM:
             },
         }
 
+    DESCRIPTION = "Measures structural similarity between images, accounting for luminance, contrast, and structure."
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("ssim",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -122,7 +128,6 @@ class SSIM:
         kernel_sigma: float,
         data_range: float,
         reduction: str,
-        full: bool,
         downsample: bool,
         k1: float,
         k2: float,
@@ -135,7 +140,6 @@ class SSIM:
                 kernel_sigma=kernel_sigma,
                 data_range=data_range,
                 reduction=reduction,
-                full=full,
                 downsample=downsample,
                 k1=k1,
                 k2=k2,
@@ -168,10 +172,12 @@ class MSSSIM:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "k1": (
                     "FLOAT",
                     {
@@ -190,6 +196,7 @@ class MSSSIM:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("ms_ssim",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -271,16 +278,19 @@ class IWSSIM:
                         "default": 0.4,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
             },
         }
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("iw_ssim",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -332,16 +342,19 @@ class VIFp:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
             },
         }
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("vifp",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -375,10 +388,12 @@ class FSIM:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "chromatic": (
                     "BOOLEAN",
                     {
@@ -433,6 +448,7 @@ class FSIM:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("fsim",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -480,10 +496,12 @@ class SRSIM:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "chromatic": (
                     "BOOLEAN",
                     {
@@ -520,6 +538,7 @@ class SRSIM:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("srsim",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -561,10 +580,12 @@ class GMSD:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "t": (
                     "FLOAT",
                     {
@@ -577,6 +598,7 @@ class GMSD:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("gmsd",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -610,10 +632,12 @@ class MSGMSD:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "chromatic": (
                     "BOOLEAN",
                     {
@@ -656,6 +680,7 @@ class MSGMSD:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("msgmsd",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -699,10 +724,12 @@ class DSS:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "dct_size": (
                     "INTEGER",
                     {
@@ -739,6 +766,7 @@ class DSS:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("dss",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -791,24 +819,30 @@ class ContentScore:
             "required": {
                 "image_a": ("IMAGE",),
                 "image_b": ("IMAGE",),
-                "feature_extractor": [
-                    "vgg16",
-                    "vgg19",
-                ],
+                "feature_extractor": (
+                    [
+                        "vgg16",
+                        "vgg19",
+                    ],
+                ),
                 "replace_pooling": (
                     "BOOLEAN",
                     {
                         "default": False,
                     },
                 ),
-                "distance": [
-                    "mse",
-                    "mae",
-                ],
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "distance": (
+                    [
+                        "mse",
+                        "mae",
+                    ],
+                ),
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "normalize_features": (
                     "BOOLEAN",
                     {
@@ -821,6 +855,7 @@ class ContentScore:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("content_loss",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -870,24 +905,30 @@ class StyleScore:
             "required": {
                 "image_a": ("IMAGE",),
                 "image_b": ("IMAGE",),
-                "feature_extractor": [
-                    "vgg16",
-                    "vgg19",
-                ],
+                "feature_extractor": (
+                    [
+                        "vgg16",
+                        "vgg19",
+                    ],
+                ),
                 "replace_pooling": (
                     "BOOLEAN",
                     {
                         "default": False,
                     },
                 ),
-                "distance": [
-                    "mse",
-                    "mae",
-                ],
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "distance": (
+                    [
+                        "mse",
+                        "mae",
+                    ],
+                ),
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "normalize_features": (
                     "BOOLEAN",
                     {
@@ -900,6 +941,7 @@ class StyleScore:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("style_loss",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -962,16 +1004,19 @@ class HaarPSI:
                         "default": 4.2,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
             },
         }
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("haar_psi",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -1011,10 +1056,12 @@ class MDSI:
                         "default": 1.0,
                     },
                 ),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "c1": (
                     "FLOAT",
                     {
@@ -1033,10 +1080,12 @@ class MDSI:
                         "default": 550.0,
                     },
                 ),
-                "combination": [
-                    "sum",
-                    "mult",
-                ],
+                "combination": (
+                    [
+                        "sum",
+                        "mult",
+                    ],
+                ),
                 "alpha": (
                     "FLOAT",
                     {
@@ -1079,6 +1128,7 @@ class MDSI:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("mdsi",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -1143,20 +1193,25 @@ class LPIPS:
                         "default": False,
                     },
                 ),
-                "distance": [
-                    "mse",
-                    "mae",
-                ],
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "distance": (
+                    [
+                        "mse",
+                        "mae",
+                    ],
+                ),
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
             },
         }
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("lpips",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -1200,10 +1255,12 @@ class PieAPP:
             "required": {
                 "image_a": ("IMAGE",),
                 "image_b": ("IMAGE",),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
                 "data_range": (
                     "FLOAT",
                     {
@@ -1228,6 +1285,7 @@ class PieAPP:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("pieapp",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
@@ -1267,16 +1325,19 @@ class DISTS:
             "required": {
                 "image_a": ("IMAGE",),
                 "image_b": ("IMAGE",),
-                "reduction": [
-                    "mean",
-                    "sum",
-                ],
+                "reduction": (
+                    [
+                        "mean",
+                        "sum",
+                    ],
+                ),
             },
         }
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("dists",)
     FUNCTION = "process"
+    CATEGORY = "piq"
 
     def process(
         self,
