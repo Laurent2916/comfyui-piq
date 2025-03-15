@@ -39,14 +39,8 @@ target-version = "py312"
 
 [tool.ruff.lint]
 ignore = [
-    "C901",  # is too complex
-    "E731",  # do-not-assign-lambda
-    "EM101", # exception must not use a string literal
-    "EM102", # f-string literal in exception message
-    "G004",  # f-string literal in logging message
-    "N812",  # imported as non-lowercase
-    "S101",  # use of assert
-    "S311",  # non secure cryptographic random
+    "N802", # function name should be lowercase
+    "N999", # invalid module name
 ]
 select = [
     "A",   # flake8-builtins
