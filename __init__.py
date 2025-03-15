@@ -186,24 +186,37 @@ class MSSSIM:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "kernel_size": (
                     "INTEGER",
                     {
                         "default": 11,
+                        "tooltip": "Size of the Gaussian kernel",
                     },
                 ),
                 "kernel_sigma": (
                     "FLOAT",
                     {
                         "default": 1.5,
+                        "tooltip": "Standard deviation of the Gaussian kernel",
                     },
                 ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -211,17 +224,22 @@ class MSSSIM:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "k1": (
                     "FLOAT",
                     {
                         "default": 0.01,
+                        "tooltip": "First stability constant",
                     },
                 ),
                 "k2": (
                     "FLOAT",
                     {
                         "default": 0.03,
+                        "tooltip": "Second stability constant",
                     },
                 ),
             },
@@ -229,6 +247,7 @@ class MSSSIM:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("ms_ssim",)
+    OUTPUT_TOOLTIPS = ("Multi-Scale Structural Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -323,6 +342,7 @@ class IWSSIM:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("iw_ssim",)
+    OUTPUT_TOOLTIPS = ("Information-Weighted Structural Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -387,6 +407,7 @@ class VIFp:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("vifp",)
+    OUTPUT_TOOLTIPS = ("Visual Information Fidelity",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -481,6 +502,7 @@ class FSIM:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("fsim",)
+    OUTPUT_TOOLTIPS = ("Feature Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -571,6 +593,7 @@ class SRSIM:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("srsim",)
+    OUTPUT_TOOLTIPS = ("Spectral Residual based Similarity",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -631,6 +654,7 @@ class GMSD:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("gmsd",)
+    OUTPUT_TOOLTIPS = ("Gradient Magnitude Similarity Deviation",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -713,6 +737,7 @@ class MSGMSD:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("msgmsd",)
+    OUTPUT_TOOLTIPS = ("Multi-Scale Gradient Magnitude Similarity Deviation",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -799,6 +824,7 @@ class DSS:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("dss",)
+    OUTPUT_TOOLTIPS = ("Deep Spatial-Spectral Score",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -888,6 +914,7 @@ class ContentScore:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("content_loss",)
+    OUTPUT_TOOLTIPS = ("Content Loss Based on Deep Features",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -974,6 +1001,7 @@ class StyleScore:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("style_loss",)
+    OUTPUT_TOOLTIPS = ("Style Loss Based on Deep Features",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -1049,6 +1077,7 @@ class HaarPSI:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("haar_psi",)
+    OUTPUT_TOOLTIPS = ("Haar Perceptual Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -1161,6 +1190,7 @@ class MDSI:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("mdsi",)
+    OUTPUT_TOOLTIPS = ("Mean Deviation Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -1244,6 +1274,7 @@ class LPIPS:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("lpips",)
+    OUTPUT_TOOLTIPS = ("Learned Perceptual Image Patch Similarity",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -1318,6 +1349,7 @@ class PieAPP:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("pieapp",)
+    OUTPUT_TOOLTIPS = ("Perceptual Image-Error Assessment through Pairwise Preference",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -1370,6 +1402,7 @@ class DISTS:
 
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("dists",)
+    OUTPUT_TOOLTIPS = ("Deep Image Structure and Texture Similarity",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
