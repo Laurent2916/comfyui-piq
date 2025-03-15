@@ -1,5 +1,7 @@
 # comfyui-piq
 
+ComfyUI custom nodes for [PIQ](https://github.com/photosynthesis-team/piq) metrics.
+
 ## Installation
 
 ### Manual installation
