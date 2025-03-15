@@ -602,12 +602,23 @@ class SRSIM:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -615,35 +626,43 @@ class SRSIM:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "chromatic": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Whether to include color features",
                     },
                 ),
                 "scale": (
                     "FLOAT",
                     {
                         "default": 0.25,
+                        "tooltip": "Scale parameter",
                     },
                 ),
                 "kernel_size": (
                     "INTEGER",
                     {
                         "default": 3,
+                        "tooltip": "Size of the kernel",
                     },
                 ),
                 "sigma": (
                     "FLOAT",
                     {
                         "default": 3.8,
+                        "tooltip": "Standard deviation for Gaussian kernel",
                     },
                 ),
                 "gaussian_size": (
                     "INTEGER",
                     {
                         "default": 10,
+                        "tooltip": "Size of the Gaussian kernel",
                     },
                 ),
             },
@@ -989,18 +1008,32 @@ class ContentScore:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "feature_extractor": (
                     [
                         "vgg16",
                         "vgg19",
                     ],
+                    {
+                        "tooltip": "Neural network for feature extraction",
+                    },
                 ),
                 "replace_pooling": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Replace max pooling with average pooling",
                     },
                 ),
                 "distance": (
@@ -1008,17 +1041,24 @@ class ContentScore:
                         "mse",
                         "mae",
                     ],
+                    {
+                        "tooltip": "Distance metric",
+                    },
                 ),
                 "reduction": (
                     [
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "normalize_features": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Whether to normalize extracted features",
                     },
                 ),
             },
@@ -1076,18 +1116,32 @@ class StyleScore:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "feature_extractor": (
                     [
                         "vgg16",
                         "vgg19",
                     ],
+                    {
+                        "tooltip": "Neural network for feature extraction",
+                    },
                 ),
                 "replace_pooling": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Replace max pooling with average pooling",
                     },
                 ),
                 "distance": (
@@ -1095,17 +1149,24 @@ class StyleScore:
                         "mse",
                         "mae",
                     ],
+                    {
+                        "tooltip": "Distance metric",
+                    },
                 ),
                 "reduction": (
                     [
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "normalize_features": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Whether to normalize extracted features",
                     },
                 ),
             },
@@ -1241,12 +1302,23 @@ class MDSI:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -1254,23 +1326,29 @@ class MDSI:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "c1": (
                     "FLOAT",
                     {
                         "default": 140.0,
+                        "tooltip": "First regularization constant",
                     },
                 ),
                 "c2": (
                     "FLOAT",
                     {
                         "default": 55.0,
+                        "tooltip": "Second regularization constant",
                     },
                 ),
                 "c3": (
                     "FLOAT",
                     {
                         "default": 550.0,
+                        "tooltip": "Third regularization constant",
                     },
                 ),
                 "combination": (
@@ -1278,41 +1356,50 @@ class MDSI:
                         "sum",
                         "mult",
                     ],
+                    {
+                        "tooltip": "Combination method",
+                    },
                 ),
                 "alpha": (
                     "FLOAT",
                     {
                         "default": 0.6,
+                        "tooltip": "First weighting parameter",
                     },
                 ),
                 "beta": (
                     "FLOAT",
                     {
                         "default": 0.1,
+                        "tooltip": "Second weighting parameter",
                     },
                 ),
                 "gamma": (
                     "FLOAT",
                     {
                         "default": 0.2,
+                        "tooltip": "Third weighting parameter",
                     },
                 ),
                 "rho": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Exponential parameter",
                     },
                 ),
                 "q": (
                     "FLOAT",
                     {
                         "default": 0.25,
+                        "tooltip": "Pooling parameter",
                     },
                 ),
                 "o": (
                     "FLOAT",
                     {
                         "default": 0.25,
+                        "tooltip": "Exponent parameter",
                     },
                 ),
             },
