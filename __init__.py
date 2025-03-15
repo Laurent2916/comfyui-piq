@@ -6,18 +6,27 @@ import torch
 
 
 class PSNR:
-    """Peak Signal-to-Noise Ratio"""
-
     @classmethod
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -25,11 +34,15 @@ class PSNR:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "convert_to_greyscale": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Convert images to YIQ format and compute PSNR only on luminance channel",
                     },
                 ),
             },
@@ -38,6 +51,7 @@ class PSNR:
     DESCRIPTION = "Measures the peak signal-to-noise ratio between images. Higher values indicate better quality."
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("psnr",)
+    OUTPUT_TOOLTIPS = ("Peak Signal-to-Noise Ratio",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
@@ -61,30 +75,41 @@ class PSNR:
 
 
 class SSIM:
-    """Structural Similarity Index Measure"""
-
     @classmethod
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "kernel_size": (
                     "INTEGER",
                     {
                         "default": 11,
+                        "tooltip": "Size of the Gaussian kernel",
                     },
                 ),
                 "kernel_sigma": (
                     "FLOAT",
                     {
                         "default": 1.5,
+                        "tooltip": "Standard deviation of the Gaussian kernel",
                     },
                 ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -92,23 +117,31 @@ class SSIM:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "downsample": (
                     "BOOLEAN",
                     {
                         "default": True,
                     },
+                    {
+                        "tooltip": "Whether to perform downsampling",
+                    },
                 ),
                 "k1": (
                     "FLOAT",
                     {
                         "default": 0.01,
+                        "tooltip": "First stability constant",
                     },
                 ),
                 "k2": (
                     "FLOAT",
                     {
                         "default": 0.03,
+                        "tooltip": "Second stability constant",
                     },
                 ),
             },
@@ -117,6 +150,7 @@ class SSIM:
     DESCRIPTION = "Measures structural similarity between images, accounting for luminance, contrast, and structure."
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("ssim",)
+    OUTPUT_TOOLTIPS = ("Structural Similarity Index",)
     FUNCTION = "process"
     CATEGORY = "piq"
 
