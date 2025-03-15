@@ -281,54 +281,72 @@ class IWSSIM:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "kernel_size": (
                     "INTEGER",
                     {
                         "default": 11,
+                        "tooltip": "Size of the Gaussian kernel",
                     },
                 ),
                 "kernel_sigma": (
                     "FLOAT",
                     {
                         "default": 1.5,
+                        "tooltip": "Standard deviation of the Gaussian kernel",
                     },
                 ),
                 "k1": (
                     "FLOAT",
                     {
                         "default": 0.01,
+                        "tooltip": "First stability constant",
                     },
                 ),
                 "k2": (
                     "FLOAT",
                     {
                         "default": 0.03,
+                        "tooltip": "Second stability constant",
                     },
                 ),
                 "parent": (
                     "BOOLEAN",
                     {
                         "default": True,
+                        "tooltip": "Use parent weights",
                     },
                 ),
                 "blk_size": (
                     "INTEGER",
                     {
                         "default": 3,
+                        "tooltip": "Block size for information weighting",
                     },
                 ),
                 "sigma_nsq": (
                     "FLOAT",
                     {
                         "default": 0.4,
+                        "tooltip": "Noise variance",
                     },
                 ),
                 "reduction": (
@@ -336,6 +354,9 @@ class IWSSIM:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
             },
         }
@@ -382,18 +403,30 @@ class VIFp:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "sigma_n_sq": (
                     "FLOAT",
                     {
                         "default": 2.0,
+                        "tooltip": "Noise variance",
                     },
                 ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -401,6 +434,9 @@ class VIFp:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
             },
         }
@@ -435,12 +471,23 @@ class FSIM:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -448,53 +495,64 @@ class FSIM:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "chromatic": (
                     "BOOLEAN",
                     {
                         "default": True,
+                        "tooltip": "Whether to include color features",
                     },
                 ),
                 "scales": (
                     "INTEGER",
                     {
                         "default": 4,
+                        "tooltip": "Number of wavelet scales",
                     },
                 ),
                 "orientations": (
                     "INTEGER",
                     {
                         "default": 4,
+                        "tooltip": "Number of filter orientations",
                     },
                 ),
                 "min_length": (
                     "INTEGER",
                     {
                         "default": 6,
+                        "tooltip": "Minimum filter length",
                     },
                 ),
                 "mult": (
                     "INTEGER",
                     {
                         "default": 2,
+                        "tooltip": "Scale multiplication factor",
                     },
                 ),
                 "sigma_f": (
                     "FLOAT",
                     {
                         "default": 0.55,
+                        "tooltip": "Frequency spread",
                     },
                 ),
                 "delta_theta": (
                     "FLOAT",
                     {
                         "default": 1.2,
+                        "tooltip": "Angular interval between filter orientations",
                     },
                 ),
                 "k": (
                     "FLOAT",
                     {
                         "default": 2.0,
+                        "tooltip": "Scaling factor",
                     },
                 ),
             },
@@ -629,12 +687,23 @@ class GMSD:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -642,11 +711,15 @@ class GMSD:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "t": (
                     "FLOAT",
                     {
                         "default": 170 / (255**2),
+                        "tooltip": "Regularization constant",
                     },
                 ),
             },
@@ -682,12 +755,23 @@ class MSGMSD:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -695,41 +779,50 @@ class MSGMSD:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "chromatic": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Whether to include color features",
                     },
                 ),
                 "alpha": (
                     "FLOAT",
                     {
                         "default": 0.5,
+                        "tooltip": "Scale weighting parameter",
                     },
                 ),
                 "beta1": (
                     "FLOAT",
                     {
                         "default": 0.01,
+                        "tooltip": "First regularization parameter",
                     },
                 ),
                 "beta2": (
                     "FLOAT",
                     {
                         "default": 0.32,
+                        "tooltip": "Second regularization parameter",
                     },
                 ),
                 "beta3": (
                     "FLOAT",
                     {
                         "default": 15.0,
+                        "tooltip": "Third regularization parameter",
                     },
                 ),
                 "t": (
                     "FLOAT",
                     {
                         "default": 170.0,
+                        "tooltip": "Regularization constant",
                     },
                 ),
             },
@@ -775,12 +868,23 @@ class DSS:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "reduction": (
@@ -788,35 +892,43 @@ class DSS:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "dct_size": (
                     "INTEGER",
                     {
                         "default": 8,
+                        "tooltip": "DCT block size",
                     },
                 ),
                 "sigma_weight": (
                     "FLOAT",
                     {
                         "default": 1.55,
+                        "tooltip": "Standard deviation for weighting",
                     },
                 ),
                 "kernel_size": (
                     "INTEGER",
                     {
                         "default": 3,
+                        "tooltip": "Size of the kernel",
                     },
                 ),
                 "sigma_similarity": (
                     "FLOAT",
                     {
                         "default": 1.5,
+                        "tooltip": "Standard deviation for similarity",
                     },
                 ),
                 "percentile": (
                     "FLOAT",
                     {
                         "default": 0.05,
+                        "tooltip": "Percentile for coefficient selection",
                     },
                 ),
             },
@@ -1034,36 +1146,51 @@ class HaarPSI:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "scales": (
                     "INTEGER",
                     {
                         "default": 3,
+                        "tooltip": "Number of wavelet scales",
                     },
                 ),
                 "subsample": (
                     "BOOLEAN",
                     {
                         "default": True,
+                        "tooltip": "Whether to perform subsampling",
                     },
                 ),
                 "c": (
                     "FLOAT",
                     {
                         "default": 30.0,
+                        "tooltip": "Stability constant",
                     },
                 ),
                 "alpha": (
                     "FLOAT",
                     {
                         "default": 4.2,
+                        "tooltip": "Weighting factor",
                     },
                 ),
                 "reduction": (
@@ -1071,6 +1198,9 @@ class HaarPSI:
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
             },
         }
@@ -1249,12 +1379,23 @@ class LPIPS:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "replace_pooling": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Replace max pooling with average pooling",
                     },
                 ),
                 "distance": (
@@ -1262,12 +1403,18 @@ class LPIPS:
                         "mse",
                         "mae",
                     ],
+                    {
+                        "tooltip": "Distance metric",
+                    },
                 ),
                 "reduction": (
                     [
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
             },
         }
@@ -1318,30 +1465,46 @@ class PieAPP:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "reduction": (
                     [
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
                 "data_range": (
                     "FLOAT",
                     {
                         "default": 1.0,
+                        "tooltip": "Maximum value range of images",
                     },
                 ),
                 "stride": (
                     "INTEGER",
                     {
                         "default": 8,
+                        "tooltip": "Stride for patch extraction",
                     },
                 ),
                 "enable_grad": (
                     "BOOLEAN",
                     {
                         "default": False,
+                        "tooltip": "Enable gradient calculation",
                     },
                 ),
             },
@@ -1389,13 +1552,26 @@ class DISTS:
     def INPUT_TYPES(cls) -> dict[str, Any]:
         return {
             "required": {
-                "image_a": ("IMAGE",),
-                "image_b": ("IMAGE",),
+                "image_a": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Input image",
+                    },
+                ),
+                "image_b": (
+                    "IMAGE",
+                    {
+                        "tooltip": "Reference image",
+                    },
+                ),
                 "reduction": (
                     [
                         "mean",
                         "sum",
                     ],
+                    {
+                        "tooltip": "Reduction method",
+                    },
                 ),
             },
         }
