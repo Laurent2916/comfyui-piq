@@ -4,7 +4,17 @@ ComfyUI custom nodes for [PIQ](https://github.com/photosynthesis-team/piq) metri
 
 ## Installation
 
-### Manual installation
+### Comfyui Manager (recommended)
+
+1. Ensure you have [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager) installed.
+
+2. In ComfyUI, open the manager by clicking the `Manager` button in the top right corner.
+
+3. Click `Custom Nodes Manager` in the menu.
+
+4. Search for `comfyui-piq` in the search bar and click the `Install` button.
+
+### Manual
 
 1. Clone the repository:
 
